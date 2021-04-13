@@ -17,7 +17,7 @@
       "resolveJsonModule": true,
       "isolatedModules": true,
       "removeComments": true,
-      "outDir": "./dist",
+      "outDir": "./build",
     },
     "exclude": ["./node_modules"],
     "include": [
