@@ -1,3 +1,4 @@
+require("dotenv").config();
 import express from "express";
 import mongoose from "mongoose";
 import expressLayout from "express-ejs-layouts";
@@ -6,7 +7,13 @@ import flash from "connect-flash";
 import method_override from "method-override";
 import express_session from "express-session";
 
+/**
+ * Import routes here
+ */
+import MainRoute from "./Routes/Main";
+
 const app = express();
+const PORT = process.env.PORT ?? 3000;
 
 app.use(expressLayout);
 app.set('view engine', 'ejs');
@@ -22,7 +29,7 @@ let sessionMiddleWare = express_session({
     saveUninitialized: true,
     cookie: {
         path: "/",
-        maxAge: 24*60*60*1000,
+        maxAge: 7*24*60*60*1000,
         domain: '',
         //secure: is_prod,
         sameSite: false,
@@ -38,10 +45,6 @@ app.use(passport.session());
 
 app.use(flash());
 
-app.get("/", (req, res) => {
-    res.status(200).json({
-        msg: "Hello world"
-    });
-});
+app.use("/", MainRoute);
 
-app.listen(3000, () => console.log("Open and clear"));
+app.listen(PORT, () => console.log(`Opened on port: ${PORT}`));
