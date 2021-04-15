@@ -7,6 +7,11 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
 
+    tag: {
+        type: String,
+        required: true
+    },
+
     email: {
         type: String,
         required: true
@@ -19,14 +24,14 @@ const UserSchema = new mongoose.Schema({
 
     profile_picture: {
         type: String,
-        required: true,
+        required: false,
     },
 
     phone: {
         type: String,
         required: false,
     },
-    
+
 });
 
 const User = mongoose.model("users", UserSchema);
