@@ -23,6 +23,7 @@
     "method-override": "^3.0.0",
     "mongoose": "^5.12.3",
     "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
@@ -32,6 +33,7 @@
     "@types/express-session": "^1.17.3",
     "@types/method-override": "0.0.31",
     "@types/passport": "^1.0.6",
+    "@types/passport-google-oauth": "^1.0.41",
     "@types/passport-local": "^1.0.33"
   }
 }

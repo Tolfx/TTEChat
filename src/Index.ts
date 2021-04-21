@@ -6,20 +6,28 @@ import passport from "passport";
 import flash from "connect-flash";
 import method_override from "method-override";
 import express_session from "express-session";
-import ConfigPassport from "./Config/Passport";
+import { PORT, MongoDB_Auth } from "./Config"
+import GoogleAuth from "./Config/Google";
+
+mongoose.connect(MongoDB_Auth, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+});
+
+const db = mongoose.connection;
 
 /*
  * Import routes here
  */
 import MainRoute from "./Routes/Main";
+import OAuth2 from "./Routes/Oauth2";
 
 /*
  * Const variables.
  */
 const app = express();
-const PORT = process.env.PORT ?? 3000;
-
-ConfigPassport(passport);
+GoogleAuth(passport);
 
 app.use(expressLayout);
 app.set('view engine', 'ejs');
@@ -65,5 +73,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/", MainRoute);
+new OAuth2(app);
 
 app.listen(PORT, () => console.log(`Opened on port: ${PORT}`));
