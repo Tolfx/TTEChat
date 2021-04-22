@@ -72,7 +72,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/", MainRoute);
+new MainRoute(app);
 new OAuth2(app);
 
 app.listen(PORT, () => console.log(`Opened on port: ${PORT}`));

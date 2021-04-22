@@ -13,13 +13,13 @@ export default class OAuth2
         this.app = app;
         this.router = Router();
 
-        this.app.use(this.router);
+        this.app.use("/oauth", this.router);
 
-        this.router.get("/oauth/google", passport.authenticate("google", {
+        this.router.get("/google", passport.authenticate("google", {
             scope: ['profile']
         }));
 
-        this.router.get("/oauth/google/callback", 
+        this.router.get("/google/callback", 
             passport.authenticate('google', { failureRedirect: '/login' }),
                 (req, res) => {
                     res.redirect('/');

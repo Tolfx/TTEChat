@@ -1,21 +1,30 @@
-import { Router } from "express";
-import bcrypt from "bcryptjs";
-import passport from "passport";
-import User from "../Models/Users";
-import { RandomTag } from "../Lib/Functions";
-const router = Router();
+import { Application, Router } from "express";
 
-router.get("/", (req, res) => {
-    res.render("Home/Start");
-});
+export default class MainRouter
+{
+    protected router: Router;
+    protected app: Application;
 
-router.get("/login", (req, res) => {
-    res.render("Home/Start");
-});
+    public constructor(
+        app: Application,
+    )
+    {
+        this.app = app;
+        this.router = Router();
 
-router.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/login');
-});
+        this.app.use("/", this.router);
 
-export default router;
+        this.router.get("/", (req, res) => {
+            res.render("Home/Start");
+        });
+        
+        this.router.get("/login", (req, res) => {
+            res.render("Home/Start");
+        });
+        
+        this.router.get('/logout', (req, res) => {
+            req.logout();
+            res.redirect('/login');
+        });
+    }
+}
