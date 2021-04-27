@@ -1,4 +1,5 @@
 import { Application, Router } from "express";
+import EnsureAuth from "../Middlewares/EnsureAuth";
 
 export default class MainRouter
 {
@@ -14,7 +15,7 @@ export default class MainRouter
 
         this.app.use("/", this.router);
 
-        this.router.get("/", (req, res) => {
+        this.router.get("/", EnsureAuth, (req, res) => {
             res.render("Home/Start");
         });
         
