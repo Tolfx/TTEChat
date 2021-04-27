@@ -6,20 +6,28 @@ import passport from "passport";
 import flash from "connect-flash";
 import method_override from "method-override";
 import express_session from "express-session";
-import ConfigPassport from "./Config/Passport";
+import { PORT, MongoDB_Auth } from "./Config"
+import GoogleAuth from "./Config/Google";
+
+mongoose.connect(MongoDB_Auth, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+});
+
+const db = mongoose.connection;
 
 /*
  * Import routes here
  */
 import MainRoute from "./Routes/Main";
+import OAuth2 from "./Routes/Oauth2";
 
 /*
  * Const variables.
  */
 const app = express();
-const PORT = process.env.PORT ?? 3000;
-
-ConfigPassport(passport);
+GoogleAuth(passport);
 
 app.use(expressLayout);
 app.set('view engine', 'ejs');
@@ -55,6 +63,16 @@ app.use(passport.session());
 
 app.use(flash());
 
-app.use("/", MainRoute);
+app.use((req, res, next) => {
+    res.locals.message = req.flash('message');
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+
+    next();
+});
+
+new MainRoute(app);
+new OAuth2(app);
 
 app.listen(PORT, () => console.log(`Opened on port: ${PORT}`));
