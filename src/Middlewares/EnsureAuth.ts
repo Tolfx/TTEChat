@@ -1,5 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 
+/**
+ * @Tolfx
+ */
 export default function EnsureAuth(req: Request, res: Response, next: NextFunction)
 {
     if (req.isAuthenticated()) {

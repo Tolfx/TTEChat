@@ -1,6 +1,7 @@
 import { Application, Router } from "express";
 import EnsureAuth from "../Middlewares/EnsureAuth";
 
+// @Tolfx
 export default class MainRouter
 {
     protected router: Router;
@@ -20,7 +21,11 @@ export default class MainRouter
         });
         
         this.router.get("/login", (req, res) => {
-            res.render("Home/Start");
+            if(req.isAuthenticated())
+            {
+                return res.redirect("/")
+            }
+            return res.render("Home/Start");
         });
         
         this.router.get('/logout', (req, res) => {

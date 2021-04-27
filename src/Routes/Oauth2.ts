@@ -1,6 +1,7 @@
 import { Application, Router } from "express";
 import passport from "passport";
 
+// @Tolfx
 export default class OAuth2
 {
     protected router: Router;

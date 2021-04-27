@@ -3,6 +3,9 @@ import { OAuth2Strategy } from "passport-google-oauth"
 import { PORT, Google_Client_Id, Google_Client_Secret, HttpSchema, Domain } from "../Config";
 import { RandomTag } from "../Lib/Functions";
 
+/**
+ * @Tolfx
+ */
 export default function GoogleAuth(passport: any)
 {
     passport.use(new OAuth2Strategy({
@@ -24,9 +27,8 @@ export default function GoogleAuth(passport: any)
                         return cb(err, users);
                     });
                 }
-                else {
+                else
                     return cb(err, user);
-                }
             });
         }
     ));
