@@ -7,6 +7,7 @@ import flash from "connect-flash";
 import method_override from "method-override";
 import express_session from "express-session";
 import { PORT, MongoDB_Auth } from "./Config"
+import compileSass from "node-sass-middleware";
 import GoogleAuth from "./Config/Google";
 
 mongoose.connect(MongoDB_Auth, {
@@ -31,6 +32,13 @@ GoogleAuth(passport);
 
 app.use(expressLayout);
 app.set('view engine', 'ejs');
+app.use(
+    compileSass({
+        src: process.cwd()+"/sass", 
+        dest: process.cwd()+"/public",
+        outputStyle: 'compressed'
+    })
+);
 app.use(express.static('public'));
 
 app.use(method_override('_method'));

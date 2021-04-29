@@ -1,0 +1,14 @@
+@import "./ThemeColors.scss";  
+$primary: #78b2e0;
+$danger: #f18986;
+    
+$theme-colors: (
+  "primary": $primary,
+  "danger": $danger,
+  "light": $theme_main_white,
+  "warning": $theme_main_orange,
+  "dark": $theme_main_dark,
+  "success": $theme_main_green,
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";

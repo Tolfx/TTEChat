@@ -1,5 +1,8 @@
 import crypto from "crypto";
 
+/**
+ * @Tolfx
+ */
 export async function RandomTag(): Promise<string>
 {
     return new Promise((resolve, reject) => {
