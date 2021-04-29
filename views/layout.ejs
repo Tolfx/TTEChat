@@ -21,27 +21,21 @@
         crossorigin="anonymous"
         defer
       ></script>
-      <script 
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" 
-        integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" 
-        crossorigin="anonymous"
-        defer
-      ></script>
-
 
       <link rel="stylesheet" type="text/css" href="/css/Main.css">
 
       <title>TTEChat</title>
   </head>
   <body>
+    <% if(isAuth) {%>
     <div class="container">
-      <nav class="navbar rounded shadow mt-3 navbar-expand-lg bg-dark">
+      <nav class="navbar rounded shadow mt-3 navbar-expand-lg navbar-light bg-dark  ">
         <div class="container">
           <a class="navbar-brand" href="/">
             <img src="/images/TTEChat.png" alt="" height="40">
           </a>
           <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon text-light"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -59,7 +53,7 @@
         </div>
       </nav>
     </div>
-
+    <% } %>
 
     <%- body %>
 

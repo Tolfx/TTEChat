@@ -2,7 +2,7 @@ import { Application, Router } from "express";
 import EnsureAuth from "../Middlewares/EnsureAuth";
 
 // @Tolfx
-export default class MainRouter
+export default class SettingRouter
 {
     protected router: Router;
     protected app: Application;
