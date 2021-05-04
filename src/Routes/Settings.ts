@@ -19,17 +19,5 @@ export default class SettingRouter
         this.router.get("/", EnsureAuth, (req, res) => {
             res.render("Settings/Index");
         });
-
-        this.router.get("/profile-picture", EnsureAuth, (req, res) => {
-            res.render("Settings/Profile_Picture");
-        });
-
-        this.router.get("/profile-name", EnsureAuth, (req, res) => {
-            res.render("Settings/Profile_Name");
-        });
-
-        this.router.get("/profile-id", EnsureAuth, (req, res) => {
-            res.render("Settings/Profile_Id");
-        });
     }
 }
