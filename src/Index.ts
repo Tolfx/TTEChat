@@ -9,6 +9,7 @@ import express_session from "express-session";
 import { PORT, MongoDB_Auth } from "./Config"
 import compileSass from "node-sass-middleware";
 import GoogleAuth from "./Config/Google";
+import { Server } from "http"
 
 mongoose.connect(MongoDB_Auth, {
     useNewUrlParser: true,
@@ -23,11 +24,14 @@ const db = mongoose.connection;
  */
 import MainRoute from "./Routes/Main";
 import OAuth2 from "./Routes/Oauth2";
+import SocketIo from "./Socket/Sockets";
 
 /*
  * Const variables.
  */
 const app = express();
+const server = new Server(app)
+const io = (new SocketIo(server)).io;
 GoogleAuth(passport);
 
 app.use(expressLayout);
@@ -82,7 +86,7 @@ app.use((req, res, next) => {
     next();
 });
 
-new MainRoute(app);
+new MainRoute(app, io);
 new OAuth2(app);
 
-app.listen(PORT, () => console.log(`Opened on port: ${PORT}`));
+server.listen(PORT, () => console.log(`Opened on port: ${PORT}`));
