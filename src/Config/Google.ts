@@ -11,7 +11,7 @@ export default function GoogleAuth(passport: any)
     passport.use(new OAuth2Strategy({
         clientID: Google_Client_Id,
         clientSecret: Google_Client_Secret,
-        callbackURL: `${HttpSchema}://${Domain}:${PORT}/oauth/google/callback`
+        callbackURL: `${HttpSchema}://${Domain}${Domain === "localhost" ? `:${PORT}` : ""}/oauth/google/callback`
       },
       (token, tokenSecret, profile, cb) => 
         {
