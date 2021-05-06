@@ -25,6 +25,9 @@ const db = mongoose.connection;
 import MainRoute from "./Routes/Main";
 import OAuth2 from "./Routes/Oauth2";
 import SocketIo from "./Socket/Sockets";
+import SettingRouter from "./Routes/Settings";
+import FriendsRoute from "./Routes/Friends";
+import ChatRouter from "./Routes/Chat";
 
 /*
  * Const variables.
@@ -87,6 +90,9 @@ app.use((req, res, next) => {
 });
 
 new MainRoute(app, io);
+new SettingRouter(app);
+new FriendsRoute(app, io);
+new ChatRouter(app, io);
 new OAuth2(app);
 
 server.listen(PORT, () => console.log(`Opened on port: ${PORT}`));
