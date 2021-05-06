@@ -1,6 +1,7 @@
 import { Application, Router } from "express";
 import EnsureAuth from "../Middlewares/EnsureAuth";
 import { Server } from "socket.io";
+import User from "../Models/Users";
 
 // @Tolfx
 export default class FriendsRoute
@@ -22,6 +23,20 @@ export default class FriendsRoute
 
         this.router.get("/", (req, res) => {
             res.render("Friends/Index");
+        });
+
+        //@Tolfx
+        this.router.post("/add/:friendTag", async (req, res) => {
+            const friendId = req.params.friendTag;
+            
+            // Check if user exists?
+            const friend = await User.findOne( { tag: friendId } );
+            if(!friend)
+            {
+                return;
+            }
+
+            
         });
     }
 }

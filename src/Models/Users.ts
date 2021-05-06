@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import UserInterface from "../Interfaces/User";
 
 const UserSchema = new mongoose.Schema({
 
@@ -25,10 +26,15 @@ const UserSchema = new mongoose.Schema({
     googleId: {
         type: String,
         required: true,
-    }
+    },
+
+    friends: {
+        type: Array,
+        required: false
+    },
 
 });
 
-const User = mongoose.model("users", UserSchema);
+const User = mongoose.model<UserInterface>("users", UserSchema);
 
 export default User;
