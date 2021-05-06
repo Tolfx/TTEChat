@@ -1,3 +1,5 @@
+//@Tolfx
+
 require("dotenv").config();
 import express from "express";
 import mongoose from "mongoose";
@@ -89,10 +91,15 @@ app.use((req, res, next) => {
     next();
 });
 
+//@Tolfx
 new MainRoute(app, io);
+//@Tolfx
 new SettingRouter(app);
+//@Tolfx
 new FriendsRoute(app, io);
+//@Tolfx
 new ChatRouter(app, io);
+//@Tolfx
 new OAuth2(app);
 
 server.listen(PORT, () => console.log(`Opened on port: ${PORT}`));
