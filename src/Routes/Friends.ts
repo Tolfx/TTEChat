@@ -2,7 +2,7 @@ import { Application, Router } from "express";
 import EnsureAuth from "../Middlewares/EnsureAuth";
 
 // @Tolfx
-export default class SettingRouter
+export default class FriendsRoute
 {
     protected router: Router;
     protected app: Application;
@@ -14,10 +14,10 @@ export default class SettingRouter
         this.app = app;
         this.router = Router();
 
-        this.app.use("/settings", EnsureAuth, this.router);
+        this.app.use("/friends", EnsureAuth, this.router);
 
         this.router.get("/", (req, res) => {
-            res.render("Settings/Index");
+            res.render("Friends/Index");
         });
     }
 }
