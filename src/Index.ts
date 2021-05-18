@@ -90,6 +90,11 @@ app.use((req, res, next) => {
 
     //@ts-ignore
     res.locals.profilePicture = req.user?.profile_picture;
+    //@ts-ignore
+    res.locals.Name = req.user?.username
+
+    //@ts-ignore
+    res.locals.Tag = req.user?.tag
 
     next();
 });
