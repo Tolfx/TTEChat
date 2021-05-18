@@ -88,6 +88,9 @@ app.use((req, res, next) => {
 
     res.locals.isAuth = req.isAuthenticated();
 
+    //@ts-ignore
+    res.locals.profilePicture = req.user?.profile_picture;
+
     next();
 });
 

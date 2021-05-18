@@ -1,24 +1,20 @@
 import mongoose from "mongoose";
-import UserInterface from "../Interfaces/User";
 
-const FriendsSchema = new mongoose.Schema({
+const FriendsSchema = new mongoose.Schema(
+    {
 
-    googleId: {
-        type: String,
-        required: true,
-    },
+        googleIds: {
+            type: Array,
+            required: true,
+        },
 
-    friendGoogleId: {
-        type: String,
-        required: true
-    },
+        pending: {
+            type: Boolean,
+            required: true
+        },
 
-    pending: {
-        type: Boolean,
-        required: false
-    },
-
-});
+    }
+);
 
 const Friends = mongoose.model<any>("friends", FriendsSchema);
 

@@ -2,6 +2,7 @@ import { Application, Router } from "express";
 import EnsureAuth from "../Middlewares/EnsureAuth";
 import { Server } from "socket.io";
 import User from "../Models/Users";
+import Friends from "../Models/Friends";
 
 // @Tolfx
 export default class FriendsRoute
@@ -22,21 +23,38 @@ export default class FriendsRoute
         this.app.use("/friends", EnsureAuth, this.router);
 
         this.router.get("/", (req, res) => {
-            res.render("Friends/Index");
+            return res.render("Friends/Index");
         });
 
         //@Tolfx
         this.router.post("/add/:friendTag", async (req, res) => {
             const friendId = req.params.friendTag;
             
-            // Check if user exists?
             const friend = await User.findOne( { tag: friendId } );
+            //@ts-ignore
+            const ourSelf = req.user
+            // Check if user exists?
             if(!friend)
             {
-                return;
+                req.flash("error_msg", "Didn't find a user with this tag");
+                return res.redirect("back");
             }
 
-            
+            const isFriends = await Friends.findOne( { googleIds: ourSelf, $and: [{ googleIds: friend }] } )
+    
+            if(isFriends)
+            {
+                req.flash("error_msg", "Already friends or still pending");
+                return res.redirect("back");
+            }
+
+            return new Friends({
+                googleIds: [ourSelf, friend],
+                pending: true
+            }).save().then(e => {
+                req.flash("success_msg", "Friend request sent");
+                res.render("Friends/Index");
+            })
         });
     }
 }
