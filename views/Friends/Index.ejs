@@ -40,7 +40,7 @@
             <div class="modal-body">
             <% PendingFriends.forEach(friends => { %>
                 <% friends.googleIds.forEach(a => { %>
-                    <% if (a.tag !== Tag) { %>
+                    <% if (a.Id !== ID) { %>
                         <%= a.username %>
                         <form action="/friends/accept/<%= a.tag %>" method="post">
                             <button type="submit">Accept</button>
