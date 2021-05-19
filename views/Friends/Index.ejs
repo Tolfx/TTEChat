@@ -13,12 +13,12 @@
         <!-- Loop for each friend here -->
         <% Friends.forEach(friend => { %>
             <div class="card" style="width: 18rem;">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><%= friend.username %> </li>
-    
-                </ul>
-            </div>
-
+                <img src="<%= friend.profile_picture %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><%= friend.username %> </h5>>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
         <% }) %>
 
 

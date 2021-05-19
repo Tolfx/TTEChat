@@ -19,11 +19,11 @@ export default async function SetGenerals(req: Request, res: Response, next: Nex
                 }
             })
         })
-        let a = [];
-        f.forEach(async b => {
+        let a = f;
+        a = await Promise.all(a.map(async b => {
             const friend = await User.findOne({ googleId: b[0].googleId });
-            a.push(friend);
-        })
+            return friend
+        }))
         res.locals.Friends = a;
         //@ts-ignore
         res.locals.PendingFriends = await Friends.find({ "googleIds.googleId": req.user.googleId, pending: true });
