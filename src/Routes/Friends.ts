@@ -49,6 +49,7 @@ export default class FriendsRoute
             }
 
             return new Friends({
+                //@ts-ignore
                 googleIds: [ourSelf.googleId, friend.googleId],
                 sentId: ourSelf,
             }).save().then((e: any) => {

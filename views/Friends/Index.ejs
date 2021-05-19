@@ -1,7 +1,9 @@
 <!-- Tooxic -->
 <div class="container">
 
-    <button class="btn btn-success">Add friend</button>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addFriend">
+        Add friend
+    </button>
     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         Pending
     </button>
@@ -56,5 +58,36 @@
         </div>
         </div>
     </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="addFriend" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Pending friend requests</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input id="friend" type="">
+                    <button id="sendFriendButton">Send</button>
+
+                    <script>
+                        const a = document.querySelector("#sendFriendButton");
+                        a.addEventListener("click", () => {
+                            console.log("hello")
+                            const b = document.querySelector("#friend").value;
+
+                            fetch(`/friends/add/${b}`, {
+                                method: "POST"
+                            })
+                        })
+                    </script>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
 
 </div>
