@@ -60,7 +60,7 @@ export default class FriendsRoute
 
         //@Tolfx
         this.router.post("/accept/:friendId", async (req, res) => {
-            const friendId = req.params.friendTag;
+            const friendId = req.params.friendId;
             const friend = await User.findOne( { googleId: friendId } );
             //@ts-ignore
             const ourSelf = req.user
@@ -68,13 +68,14 @@ export default class FriendsRoute
                 return;
 
             // Check if user exists?
+            console.log(friend)
             if(!friend)
             {
                 req.flash("error_msg", "Didn't find a user with this tag");
                 return res.redirect("back");
             }
 
-            const isFriends = await Friends.findOne( { googleIds: ourSelf, $and: [{ googleIds: friend }] } )
+            const isFriends = await Friends.findOne( { "googleIds.googleId": ourSelf.googleId, $and: [{ "googleIds.googleId": friend.googleId }] } )
     
             if(!isFriends)
             {

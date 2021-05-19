@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import Friends from "../Models/Friends";
+import User from "../Models/Users";
 
 /**
  * @Tolfx
@@ -9,7 +10,21 @@ export default async function SetGenerals(req: Request, res: Response, next: Nex
     if(req.isAuthenticated())
     {
         //@ts-ignore
-        res.locals.Friends = await Friends.find({ "googleIds.googleId": req.user.googleId, isFriends: true });
+        const friends = await Friends.find({ "googleIds.googleId": req.user.googleId, isFriends: true });
+        const f = friends.map(e => {
+            return e.googleIds.filter(a => {
+                if(a.googleId != req.user.googleId)
+                {
+                    return a.googleId
+                }
+            })
+        })
+        let a = [];
+        f.forEach(async b => {
+            const friend = await User.findOne({ googleId: b[0].googleId });
+            a.push(friend);
+        })
+        res.locals.Friends = a;
         //@ts-ignore
         res.locals.PendingFriends = await Friends.find({ "googleIds.googleId": req.user.googleId, pending: true });
     }
