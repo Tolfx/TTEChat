@@ -11,7 +11,6 @@
     
     <div class="container d-flex flex-wrap justify-content-center">
         <!-- Loop for each friend here -->
-        <%= console.log(Friends) %> 
         <% Friends.forEach(friend => { %>
             <% friend.googleIds.forEach(a => { %>
                 <% if (a.googleId !== googleId) { %>
@@ -46,7 +45,7 @@
                 <% friends.googleIds.forEach(a => { %>
                     <% if (a.googleId !== googleId) { %>
                         <%= a.username %>
-                        <form action="/friends/accept/<%= a %>" method="post">
+                        <form action="/friends/accept/<%= a.googleId %>" method="post">
                             <button type="submit">Accept</button>
                         </form>
                     <% } %>
