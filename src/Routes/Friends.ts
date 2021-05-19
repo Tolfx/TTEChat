@@ -50,7 +50,7 @@ export default class FriendsRoute
 
             return new Friends({
                 //@ts-ignore
-                googleIds: [ourSelf.googleId, friend.googleId],
+                googleIds: [{ googleId: ourSelf.googleId, username: ourSelf.username}, { googleId: friend.googleId, username: friend.username}],
                 sentId: ourSelf,
             }).save().then((e: any) => {
                 req.flash("success_msg", "Friend request sent");
@@ -59,9 +59,9 @@ export default class FriendsRoute
         });
 
         //@Tolfx
-        this.router.post("/accept/:friendTag", async (req, res) => {
+        this.router.post("/accept/:friendId", async (req, res) => {
             const friendId = req.params.friendTag;
-            const friend = await User.findOne( { tag: friendId } );
+            const friend = await User.findOne( { googleId: friendId } );
             //@ts-ignore
             const ourSelf = req.user
             if(!ourSelf)

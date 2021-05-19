@@ -9,10 +9,9 @@ export default async function SetGenerals(req: Request, res: Response, next: Nex
     if(req.isAuthenticated())
     {
         //@ts-ignore
-        res.locals.Friends = await Friends.find({ googleIds: req.user.id, isFriends: true });
+        res.locals.Friends = await Friends.find({ googleIds: req.user.googleId, isFriends: true });
         //@ts-ignore
-        const a = await Friends.find({ googleIds: req.user.id, pending: true })
-        res.locals.PendingFriends = a;
+        res.locals.PendingFriends = await Friends.find({ googleIds: req.user.googleId, pending: true });
     }
 
     res.locals.isAuth = req.isAuthenticated();
@@ -24,7 +23,7 @@ export default async function SetGenerals(req: Request, res: Response, next: Nex
     //@ts-ignore
     res.locals.Tag = req.user?.tag;
     //@ts-ignore
-    res.locals.Id = req.user?._id;
+    res.locals.googleId = req.user?.googleId;
 
     next();
 }

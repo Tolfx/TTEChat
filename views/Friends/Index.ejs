@@ -13,7 +13,7 @@
         <!-- Loop for each friend here -->
         <% Friends.forEach(friend => { %>
             <% friend.googleIds.forEach(a => { %>
-                <% if (a.tag !== Tag) { %>
+                <% if (a !== googleId) { %>
                     <div class="card" style="width: 18rem;">
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item"><%= a.username %> </li>
@@ -41,10 +41,11 @@
             </div>
             <div class="modal-body">
             <% PendingFriends.forEach(friends => { %>
+
                 <% friends.googleIds.forEach(a => { %>
-                    <% if (a.Id !== ID) { %>
+                    <% if (!friends.sentId.includes(googleId)) { %>
                         <%= a.username %>
-                        <form action="/friends/accept/<%= a.tag %>" method="post">
+                        <form action="/friends/accept/<%= a %>" method="post">
                             <button type="submit">Accept</button>
                         </form>
                     <% } %>
@@ -74,7 +75,6 @@
                     <script>
                         const a = document.querySelector("#sendFriendButton");
                         a.addEventListener("click", () => {
-                            console.log("hello")
                             const b = document.querySelector("#friend").value;
 
                             fetch(`/friends/add/${b}`, {
