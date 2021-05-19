@@ -20,9 +20,11 @@ export default async function SetGenerals(req: Request, res: Response, next: Nex
     //@ts-ignore
     res.locals.profilePicture = req.user?.profile_picture;
     //@ts-ignore
-    res.locals.Name = req.user?.username
+    res.locals.Name = req.user?.username;
     //@ts-ignore
-    res.locals.Tag = req.user?.tag
+    res.locals.Tag = req.user?.tag;
+    //@ts-ignore
+    res.locals.Id = req.user.id;
 
     next();
 }

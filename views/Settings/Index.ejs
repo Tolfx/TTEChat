@@ -1,6 +1,6 @@
 <!-- Tooxic -->
     </head>
-    <div class="container mt-5">
+    <div class="container mt-5 text-light">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-10 col-xl-8 mx-auto">
             <h2 class="h3 mb-4 page-title">Settings</h2>
@@ -10,18 +10,17 @@
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Profile</a>
                     </li>
                 </ul>
-                <form>
+                <form method="post" action="/settings/save">
                     <div class="row mt-5 align-items-center">
                         <div class="col-md-3 text-center mb-5">
                             <div class="avatar avatar-xl">
-                                <img src="<%= profilePicture %>" alt="..." class="avatar-img rounded-circle" />
+                                <img src="<%= profilePicture %>" alt="Profile picture" class="avatar-img rounded-circle" />
                             </div>
                         </div>
                         <div class="col">
                             <div class="row align-items-center">
                                 <div class="col-md-7">
-                                    <h4 class="mb-1"><%= Name %></h4>
-                                    <p class="small mb-3">What is this<span class="badge badge-dark"></span></p>
+                                    <h4 class="mb-1 fs-1"><%= Name %></h4>
                                 </div>
                             </div>
                             <div class="row mb-4">
@@ -33,12 +32,12 @@
                     </div>
                      <div class="form-group">
                         <label for="inputName">Name</label>
-                        <input type="email" class="form-control" id="inputName" placeholder="<%= Name %>" />
+                        <input type="text" name="name" class="form-control" id="inputName" value="<%= Name %>" placeholder="<%= Name %>" />
                     </div>
                     </div>
                     <div class="form-group">
                         <label for="inputTag">Tag</label>
-                        <input type="email" class="form-control" id="inputTag" placeholder="<%= Tag %>" />
+                        <input type="tag" name="tag" class="form-control" id="inputTag" value="<%= Tag %>" placeholder="<%= Tag %>" />
                     </div>
                   
                     <button type="submit" class="btn btn-primary">Save Changes</button>
