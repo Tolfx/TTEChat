@@ -11,13 +11,7 @@ export default async function SetGenerals(req: Request, res: Response, next: Nex
         //@ts-ignore
         res.locals.Friends = await Friends.find({ googleIds: req.user, isFriends: true });
         //@ts-ignore
-        const a = ((await Friends.find({ googleIds: req.user, pending: true }))
-        .map(e => {
-            const o = e.googleIds.map(a => a.googleId !== req.user.googleId);
-            console.log(o)
-            return o
-        }))
-        console.log(a)
+        const a = await Friends.find({ googleIds: req.user, pending: true })
         res.locals.PendingFriends = a;
     }
 

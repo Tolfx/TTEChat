@@ -9,12 +9,21 @@
     
     <div class="container d-flex flex-wrap justify-content-center">
         <!-- Loop for each friend here -->
-        <div class="card" style="width: 18rem;">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><%= PendingFriends %> </li>
+        <% Friends.forEach(friend => { %>
+            <% friend.googleIds.forEach(a => { %>
+                <% if (a.tag !== Tag) { %>
+                    <div class="card" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item"><%= a.username %> </li>
+            
+                        </ul>
+                      </div>
+                <% } %>
 
-            </ul>
-          </div>
+            <% }) %>
+
+        <% }) %>
+
 
     </div>
 
@@ -30,7 +39,14 @@
             </div>
             <div class="modal-body">
             <% PendingFriends.forEach(friends => { %>
-                <%= friends %> 
+                <% friends.googleIds.forEach(a => { %>
+                    <% if (a.tag !== Tag) { %>
+                        <%= a.username %>
+                        <form action="/friends/accept/<%= a.tag %>" method="post">
+                            <button type="submit">Accept</button>
+                        </form>
+                    <% } %>
+                <% }) %>
             <% }) %>
             </div>
             <div class="modal-footer">
