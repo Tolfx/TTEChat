@@ -8,9 +8,19 @@ const FriendsSchema = new mongoose.Schema(
             required: true,
         },
 
+        sentId: {
+            type: String,
+            required: true
+        },
+
+        isFriends: {
+            type: Boolean,
+            default: false
+        },
+
         pending: {
             type: Boolean,
-            required: true
+            default: true
         },
 
     }
