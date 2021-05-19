@@ -49,7 +49,7 @@ export default class FriendsRoute
             }
 
             return new Friends({
-                googleIds: [ourSelf, friend],
+                googleIds: [ourSelf.googleId, friend.googleId],
                 sentId: ourSelf,
             }).save().then((e: any) => {
                 req.flash("success_msg", "Friend request sent");
