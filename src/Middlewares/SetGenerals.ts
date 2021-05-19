@@ -12,7 +12,9 @@ export default async function SetGenerals(req: Request, res: Response, next: Nex
         //@ts-ignore
         const friends = await Friends.find({ "googleIds.googleId": req.user.googleId, isFriends: true });
         const f = friends.map(e => {
+            //@ts-ignore
             return e.googleIds.filter(a => {
+                //@ts-ignore
                 if(a.googleId != req.user.googleId)
                 {
                     return a.googleId

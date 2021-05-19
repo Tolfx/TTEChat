@@ -75,6 +75,7 @@ export default class FriendsRoute
                 return res.redirect("back");
             }
 
+            //@ts-ignore
             const isFriends = await Friends.findOne( { "googleIds.googleId": ourSelf.googleId, $and: [{ "googleIds.googleId": friend.googleId }] } )
     
             if(!isFriends)
