@@ -9,9 +9,9 @@ export default async function SetGenerals(req: Request, res: Response, next: Nex
     if(req.isAuthenticated())
     {
         //@ts-ignore
-        res.locals.Friends = await Friends.find({ googleIds: req.user.googleId, isFriends: true });
+        res.locals.Friends = await Friends.find({ "googleIds.googleId": req.user.googleId, isFriends: true });
         //@ts-ignore
-        res.locals.PendingFriends = await Friends.find({ googleIds: req.user.googleId, pending: true });
+        res.locals.PendingFriends = await Friends.find({ "googleIds.googleId": req.user.googleId, pending: true });
     }
 
     res.locals.isAuth = req.isAuthenticated();

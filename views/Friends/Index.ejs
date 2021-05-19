@@ -11,9 +11,10 @@
     
     <div class="container d-flex flex-wrap justify-content-center">
         <!-- Loop for each friend here -->
+        <%= console.log(Friends) %> 
         <% Friends.forEach(friend => { %>
             <% friend.googleIds.forEach(a => { %>
-                <% if (a !== googleId) { %>
+                <% if (a.googleId !== googleId) { %>
                     <div class="card" style="width: 18rem;">
                         <ul class="list-group list-group-flush">
                           <li class="list-group-item"><%= a.username %> </li>
@@ -43,7 +44,7 @@
             <% PendingFriends.forEach(friends => { %>
 
                 <% friends.googleIds.forEach(a => { %>
-                    <% if (!friends.sentId.includes(googleId)) { %>
+                    <% if (a.googleId !== googleId) { %>
                         <%= a.username %>
                         <form action="/friends/accept/<%= a %>" method="post">
                             <button type="submit">Accept</button>
