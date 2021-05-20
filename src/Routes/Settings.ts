@@ -30,7 +30,7 @@ export default class SettingRouter
 
             if(name !== ourSelf.username)
             {
-                if(name.lenght >= 15)
+                if(name.length >= 15)
                 {
                     req.flash("error_msg", "Too long");
                 }
