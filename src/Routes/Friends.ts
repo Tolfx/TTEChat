@@ -44,7 +44,8 @@ export default class FriendsRoute
                 });
             }
 
-            const isFriends = await Friends.findOne( { googleIds: ourSelf, $and: [{ googleIds: friend }] } )
+            //@ts-ignore
+            const isFriends = await Friends.findOne( { "googleIds.googleId": ourSelf.googleId, $and: [{ "googleIds.googleId": friend.googleId }] } )
     
             if(isFriends)
             {
