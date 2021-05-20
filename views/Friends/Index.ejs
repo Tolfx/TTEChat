@@ -18,7 +18,7 @@
                   <h5 class="card-title"><%= friend.username %> </h5>
                   <h5 class="card-title"><%= friend.tag %> </h5>
                   <a href="#" class="btn btn-primary">Start a chat</a>
-                  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removefriend">
                     Remove friend
                 </button>
                 </div>
@@ -93,12 +93,12 @@
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Pending friend requests</h5>
+            <h5 class="modal-title" class="btn btn-danger" id="staticBackdropLabel">Remove friend</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="btn btn-danger">
                 <input id="friend" type="">
-                <button id="sendFriendButton">Send</button>
+                <button id="sendFriendButton">Remove</button>
 
                 <script>
                     const a = document.querySelector("#sendFriendButton");
