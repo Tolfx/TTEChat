@@ -18,7 +18,9 @@
                   <h5 class="card-title"><%= friend.username %> </h5>
                   <h5 class="card-title"><%= friend.tag %> </h5>
                   <a href="#" class="btn btn-primary">Start a chat</a>
-                  <a href="#" class="btn btn-primary">Remove friend</a>
+                  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Remove friend
+                </button>
                 </div>
               </div>
         <% }) %>
@@ -57,7 +59,7 @@
         </div>
     </div>
 
-        <!-- Modal -->
+        <!-- Add friend -->
         <div class="modal fade" id="addFriend" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
@@ -86,5 +88,34 @@
             </div>
             </div>
         </div>
+     <!-- Add friend -->
+     <div class="modal fade" id="removefriend" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Pending friend requests</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="friend" type="">
+                <button id="sendFriendButton">Send</button>
+
+                <script>
+                    const a = document.querySelector("#sendFriendButton");
+                    a.addEventListener("click", () => {
+                        const b = document.querySelector("#friend").value;
+
+                        fetch(`/friends/add/${b}`, {
+                            method: "POST"
+                        })
+                    })
+                </script>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>   
 
 </div>
