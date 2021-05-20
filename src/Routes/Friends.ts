@@ -33,19 +33,26 @@ export default class FriendsRoute
             const friend = await User.findOne( { tag: friendId } );
             //@ts-ignore
             const ourSelf = req.user
+            
             // Check if user exists?
             if(!friend)
             {
-                req.flash("error_msg", "Didn't find a user with this tag");
-                return res.redirect("back");
+                //req.flash("error_msg", "Didn't find a user with this tag");
+                return res.json({
+                    status: "error",
+                    msg: "Didn't find a user with this tag"
+                });
             }
 
             const isFriends = await Friends.findOne( { googleIds: ourSelf, $and: [{ googleIds: friend }] } )
     
             if(isFriends)
             {
-                req.flash("error_msg", "Already friends or still pending");
-                return res.redirect("back");
+                //req.flash("error_msg", "Already friends or still pending");
+                return res.json({
+                    status: "error",
+                    msg: "Already friends or still pending"
+                });
             }
 
             return new Friends({
@@ -53,8 +60,11 @@ export default class FriendsRoute
                 googleIds: [{ googleId: ourSelf.googleId, username: ourSelf.username}, { googleId: friend.googleId, username: friend.username}],
                 sentId: ourSelf,
             }).save().then((e: any) => {
-                req.flash("success_msg", "Friend request sent");
-                res.render("Friends/Index");
+                //req.flash("success_msg", "Friend request sent");
+                return res.json({
+                    status: "success",
+                    msg: "Friend request sent"
+                });;
             })
         });
 
