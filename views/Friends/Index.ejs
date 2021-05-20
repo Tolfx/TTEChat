@@ -4,8 +4,8 @@
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addFriend">
         Add friend
     </button>
-    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Pending
+    <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-warning position-relative">
+        Pendings <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary"><%= PendingFriends.length %> <span class="visually-hidden">unread messages</span></span>
     </button>
     <!-- <button class="btn btn-danged">Blocked</button> -->
     
