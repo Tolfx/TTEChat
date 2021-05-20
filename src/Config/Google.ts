@@ -4,6 +4,9 @@ import { PORT, Google_Client_Id, Google_Client_Secret, HttpSchema, Domain } from
 import { RandomTag } from "../Lib/Functions";
 
 /**
+ * 
+ * @param passport Passport
+ * @description This function oauths google
  * @Tolfx
  */
 export default function GoogleAuth(passport: any)
