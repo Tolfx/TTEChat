@@ -1,42 +1,6 @@
-<style type="text/css">
-            body{
-        color: #8e9194;
-        background-color: #595353;
-    }
-    .avatar-xl img {
-        width: 110px;
-    }
-    .rounded-circle {
-        border-radius: 50% !important;
-    }
-    img {
-        vertical-align: middle;
-        border-style: none;
-    }
-    .text-muted {
-        color: #aeb0b4 !important;
-    }
-    .text-muted {
-        font-weight: 300;
-    }
-    .form-control {
-        display: block;
-        width: 100%;
-        height: calc(1.5em + 0.75rem + 2px);
-        padding: 0.375rem 0.75rem;
-        font-size: 0.875rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #4d5154;
-        background-color: #F3EEDB;
-        background-clip: padding-box;
-        border: 1px solid #eef0f3;
-        border-radius: 0.25rem;
-        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
-        </style>
+<!-- Tooxic -->
     </head>
-    <div class="container mt-5">
+    <div class="container mt-5 text-light">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-10 col-xl-8 mx-auto">
             <h2 class="h3 mb-4 page-title">Settings</h2>
@@ -46,18 +10,17 @@
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Profile</a>
                     </li>
                 </ul>
-                <form>
+                <form method="post" action="/settings/save">
                     <div class="row mt-5 align-items-center">
                         <div class="col-md-3 text-center mb-5">
                             <div class="avatar avatar-xl">
-                                <img src="<%= profilePicture %>" alt="..." class="avatar-img rounded-circle" />
+                                <img src="<%= profilePicture %>" alt="Profile picture" class="avatar-img rounded-circle" />
                             </div>
                         </div>
                         <div class="col">
                             <div class="row align-items-center">
                                 <div class="col-md-7">
-                                    <h4 class="mb-1"><%= Name %></h4>
-                                    <p class="small mb-3">What is this<span class="badge badge-dark"></span></p>
+                                    <h4 class="mb-1 fs-1"><%= Name %></h4>
                                 </div>
                             </div>
                             <div class="row mb-4">
@@ -68,13 +31,13 @@
                         </div>
                     </div>
                      <div class="form-group">
-                        <label for="inputEmail4">Name</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="<%= Name %>" />
+                        <label for="inputName">Name</label>
+                        <input type="text" name="name" class="form-control" id="inputName" value="<%= Name %>" placeholder="<%= Name %>" />
                     </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputEmail4">Tag</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="<%= Tag %>" />
+                        <label for="inputTag">Tag</label>
+                        <input type="tag" name="tag" class="form-control" id="inputTag" value="<%= Tag %>" placeholder="<%= Tag %>" />
                     </div>
                   
                     <button type="submit" class="btn btn-primary">Save Changes</button>

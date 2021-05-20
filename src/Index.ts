@@ -1,5 +1,4 @@
 //@Tolfx
-
 require("dotenv").config();
 import express from "express";
 import mongoose from "mongoose";
@@ -30,6 +29,7 @@ import SocketIo from "./Socket/Sockets";
 import SettingRouter from "./Routes/Settings";
 import FriendsRoute from "./Routes/Friends";
 import ChatRouter from "./Routes/Chat";
+import SetGenerals from "./Middlewares/SetGenerals";
 
 /*
  * Const variables.
@@ -80,21 +80,11 @@ app.use(passport.session());
 
 app.use(flash());
 
-app.use((req, res, next) => {
+app.use(SetGenerals, (req, res, next) => {
     res.locals.message = req.flash('message');
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
-
-    res.locals.isAuth = req.isAuthenticated();
-
-    //@ts-ignore
-    res.locals.profilePicture = req.user?.profile_picture;
-    //@ts-ignore
-    res.locals.Name = req.user?.username
-
-    //@ts-ignore
-    res.locals.Tag = req.user?.tag
 
     next();
 });
