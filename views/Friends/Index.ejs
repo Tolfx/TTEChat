@@ -68,6 +68,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <p id="friendMessage"></p>
                     <input id="friend" type="">
                     <button id="sendFriendButton">Send</button>
 
@@ -75,9 +76,13 @@
                         const a = document.querySelector("#sendFriendButton");
                         a.addEventListener("click", () => {
                             const b = document.querySelector("#friend").value;
-
+                            const s = document.querySelector("#friendMessage");
                             fetch(`/friends/add/${b}`, {
                                 method: "POST"
+                            }).then(e => e.json())
+                            .then(res => {
+                                console.log(res);
+                                s.innerHTML = res.msg;
                             })
                         })
                     </script>
