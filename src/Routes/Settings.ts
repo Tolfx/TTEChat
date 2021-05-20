@@ -30,18 +30,33 @@ export default class SettingRouter
 
             if(name !== ourSelf.username)
             {
-                ourSelf.username = name;
+                if(name.lenght >= 15)
+                {
+                    req.flash("error_msg", "Too long");
+                }
+                else
+                {
+                    ourSelf.username = name;
+                }
             }
 
             if(tag !== ourSelf.tag)
             {
-                // Check if tag already in use
-                const tagger = await User.findOne({ tag: tag });
-                if(!tagger)
+                if(tag.length > 15)
                 {
-                    ourSelf.tag = tag;
+                    req.flash("error_msg", "Too long");
                 }
-                req.flash("error_msg", "Tag already in use");
+                else
+                {
+                    // Check if tag already in use
+                    const tagger = await User.findOne({ tag: tag });
+                    if(!tagger)
+                    {
+                        ourSelf.tag = tag;
+                    }
+                    req.flash("error_msg", "Tag already in use");
+                }
+
             }
 
             await ourSelf.save();
