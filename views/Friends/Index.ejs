@@ -12,11 +12,11 @@
     <div class="container d-flex mt-3 flex-wrap justify-content-center">
         <!-- Loop for each friend here -->
         <% Friends.forEach(friend => { %>
-            <div class="card bg-dark m-2" style="width: 13rem;">
+            <div class="card bg-warning m-2" style="width: 14rem;">
                 <img src="<%= friend.profile_picture %>" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title"><%= friend.username %> </h5>
-                  <h5 class="card-title"><%= friend.tag %> </h5>
+                  <h5 class="card-title text-primary"><%= friend.tag %> </h5>
                   <a href="#" class="btn btn-primary">Start a chat</a>
                   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removefriend">
                     Remove friend
