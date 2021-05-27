@@ -39,17 +39,27 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <% PendingFriends.forEach(friends => { %>
-
-                <% friends.googleIds.forEach(a => { %>
-                    <% if (!friends.sentId.includes(googleId)) { %>
-                        <%= a.username %>
-                        <form action="/friends/accept/<%= a.googleId %>" method="post">
-                            <button type="submit">Accept</button>
-                        </form>
-                    <% } %>
-                <% }) %>
-            <% }) %>
+                <div>
+                    <% PendingFriends.forEach(friends => { %>
+                        <% friends.googleIds.forEach(a => { %>
+                            <% if (a.googleId !== googleId) { %>
+                                <%= a.username %>
+                                <form action="/friends/accept/<%= a.googleId %>" method="post">
+                                    <button type="submit">Accept</button>
+                                </form>
+                            <% } %>
+                        <% }) %>
+                    <% }) %>
+                    <hr/>
+                    <p>Sent friend requests to</p>
+                    <% PendingFriends.forEach(friends => { %>
+                        <% friends.googleIds.forEach(a => { %>
+                            <% if (a.googleId !== googleId) { %>
+                                <%= a.username %>
+                            <% } %>
+                        <% }) %>
+                    <% }) %>
+                </div>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
