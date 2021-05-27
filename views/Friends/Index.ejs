@@ -54,7 +54,7 @@
                     <p>Sent friend requests to</p>
                     <% PendingFriends.forEach(friends => { %>
                         <% friends.googleIds.forEach(a => { %>
-                            <% if (a.googleId !== googleId) { %>
+                            <% if (a.googleId !== googleId && friends.sentId.includes(googleId)) { %>
                                 <%= a.username %>
                             <% } %>
                         <% }) %>
