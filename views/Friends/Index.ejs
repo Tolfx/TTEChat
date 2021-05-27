@@ -42,7 +42,7 @@
                 <div>
                     <% PendingFriends.forEach(friends => { %>
                         <% friends.googleIds.forEach(a => { %>
-                            <% if (a.googleId !== googleId) { %>
+                            <% if (a.googleId !== googleId && !friends.sentId.includes(googleId)) { %>
                                 <%= a.username %>
                                 <form action="/friends/accept/<%= a.googleId %>" method="post">
                                     <button type="submit">Accept</button>
