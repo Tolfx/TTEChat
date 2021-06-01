@@ -31,6 +31,7 @@ export default class FriendsRoute
             const friendId = req.params.friendTag;
             
             const friend = await User.findOne( { tag: friendId } );
+
             //@ts-ignore
             const ourSelf = req.user
             
@@ -65,7 +66,7 @@ export default class FriendsRoute
                 return res.json({
                     status: "success",
                     msg: "Friend request sent"
-                });;
+                });
             })
         });
 
@@ -79,7 +80,6 @@ export default class FriendsRoute
                 return;
 
             // Check if user exists?
-            console.log(friend)
             if(!friend)
             {
                 req.flash("error_msg", "Didn't find a user with this tag");

@@ -15,21 +15,17 @@
             <div class="card bg-secondary m-2" style="width: 14rem;">
                 <img src="<%= friend.profile_picture %>" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title"><%= friend.username %> </h5>
-                  <h5 class="card-title text-primary"><%= friend.tag %> </h5>
-                  <a href="#" class="btn btn-primary">Start a chat</a>
-                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removefriend">
-                    Remove friend
-                </button>
+                    <h5 class="card-title"><%= friend.username %> </h5>
+                    <h5 class="card-title text-primary"><%= friend.tag %> </h5>
+                    <a href="#" class="btn btn-primary">Start a chat</a>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removefriend">
+                        Remove friend
+                    </button>
                 </div>
-              </div>
+            </div>
         <% }) %>
-
-
     </div>
 
-
-  
     <!-- Pending friend requests -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
